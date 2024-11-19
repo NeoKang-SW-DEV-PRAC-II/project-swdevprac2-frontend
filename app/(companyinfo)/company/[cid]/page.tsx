@@ -1,8 +1,8 @@
 import getCompany from "@/libs/getCompany"
 import Image from "next/image"
 
-export default async function CompanyDetailPage({params} : {params : {hid : string}}) {
-    const companyDetail = await getCompany(params.hid);
+export default async function CompanyDetailPage({params} : {params : {cid : string}}) {
+    const companyDetail = await getCompany(params.cid);
 
     return (
         <main className="text-center p-5">

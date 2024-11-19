@@ -21,7 +21,7 @@ export default function InteractionCard ({children, contentName} : {children : R
     }
 
     return (
-        <div className="w-full h-[300px] bg-white shadow-lg rounded-lg mt-[10px] ml-[10px] overflow-hidden"
+        <div className="w-full h-[400px] bg-white shadow-lg rounded-lg mt-[10px] ml-[10px] overflow-hidden"
         onClick={()=>onCardSelected()}
         onMouseOver={(e)=>onCardMouseAction(e)}
         onMouseOut={(e)=>onCardMouseAction(e)}>

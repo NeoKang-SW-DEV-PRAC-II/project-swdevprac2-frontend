@@ -14,7 +14,7 @@ export default function Card({imgSrc, companyName, onRating} : Props) {
     const [rating, setRating] = useState<number | null>(0);
     return (
         <InteractionCard contentName={companyName}>
-            <div className="img w-full h-[50%] relative object-cover">
+            <div className="img w-[100%] h-[70%] relative object-cover">
                 <Image src={imgSrc}
                     alt='cover'
                     fill={true} />

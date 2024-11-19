@@ -30,10 +30,6 @@ const SearchBar: React.FC<SearchBarProps> = ({ className, basePath, onSearchChan
   const handleSearch = (value: string) => {
     setSearchValue(value);
     debouncedSearch(value);
-
-    if (onSearchChange) {
-      onSearchChange('q', value);
-    }
   };
 
   return (
