@@ -1,6 +1,6 @@
 'use client'
 import Image from "next/image"
-import InteractionCard from "./InteractiveCard"
+import InteractionCard from "./InteractiveCard";
 import { Rating } from '@mui/material';
 import { useState } from 'react';
 

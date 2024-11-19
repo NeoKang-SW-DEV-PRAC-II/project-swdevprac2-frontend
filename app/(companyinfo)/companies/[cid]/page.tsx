@@ -1,9 +1,5 @@
 'use client'
-
 import { useParams } from "next/navigation"
-
-import { CompanyRequestBody, CompanyResponseBody, GetCompanyByIdResponse } from "@/interfaces";
-
 import { useCallback, useEffect, useState } from "react";
 import { useCompanies } from "@/app/api/companies";
 

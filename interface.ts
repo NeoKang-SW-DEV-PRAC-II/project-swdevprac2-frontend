@@ -1,4 +1,4 @@
-export interface CompanyResponseBody {
+interface CompanyResponseBody {
     _id: string,
     name: string,
     business: string,
@@ -11,7 +11,7 @@ export interface CompanyResponseBody {
     id: string
 }
 
-export interface CompanyRequestBody {
+interface CompanyRequestBody {
     name: string,
     address: string,
     business: string,
@@ -21,29 +21,36 @@ export interface CompanyRequestBody {
     picture: string
 }
 
-export interface CreateCompanyResponse {
+interface CreateCompanyResponse {
     success: true,
     data: CompanyResponseBody
 }
 
-export interface GetCompanyByIdResponse {
+interface GetCompanyByIdResponse {
     success: boolean;
     data: CompanyResponseBody;
 }
 
-export interface GetCompaniesResponse {
+interface GetCompaniesResponse {
     success: boolean;
     count: number;
     pagination: {};
     data: CompanyResponseBody[];
 }
 
-export interface UpdateCompanyByIdResponse {
+interface UpdateCompanyByIdResponse {
     success: boolean;
     data: CompanyResponseBody;
 }
 
-export interface DeleteCompanyByIdResponse {
+interface DeleteCompanyByIdResponse {
     success: boolean;
     data: CompanyResponseBody;
+}
+
+interface CompaniesResponseBody {
+    success: boolean,
+    count: number,
+    pagination: Object,
+    data: CompanyResponseBody[]
 }

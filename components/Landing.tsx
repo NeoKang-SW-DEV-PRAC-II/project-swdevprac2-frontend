@@ -1,6 +1,10 @@
+'use client'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation';
 
 export default function Landing() {
+    const router = useRouter();
+
     return (
         <div className="max-w-screen-xl mt-24 px-8 xl:px-16 mx-auto">
             <div className="grid grid-flow-row sm:grid-flow-col grid-rows-2 md:grid-rows-1 sm:grid-cols-2 gap-16 py-6 sm:py-16">
@@ -13,7 +17,8 @@ export default function Landing() {
                         Get ready for one of the biggest career opportunities of the year! Job Fair 2024 is your gateway to connecting with top companies, industry leaders, and recruiters who are actively looking for talented individuals like you.
                     </p>
                     <button className = {`bg-white text-cyan-600 border border-cyan-600
-                    font-semibold py-2 px-2 m-2 rounded z-30 hover:bg-cyan-600 hover:text-white hover:text-white hover:border-transparent`}>
+                    font-semibold py-2 px-2 m-2 rounded z-30 hover:bg-cyan-600 hover:text-white hover:text-white hover:border-transparent`} 
+                    onClick={(e) => {e.stopPropagation(); router.push('/companies') }}>
                         Get Started
                     </button>
                 </div>
