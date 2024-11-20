@@ -66,7 +66,7 @@ export const useBookings = () => {
         method: 'DELETE',
         })
         if(!response.ok) {
-            throw new Error("Failed to delete company by id")
+            throw new Error("Failed to delete booking by id")
         }
         
         const data = await response.json()

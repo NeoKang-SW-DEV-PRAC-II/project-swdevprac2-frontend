@@ -69,3 +69,12 @@ interface BookingRequestBody {
     bookingDate: string, 
     createAt: string
 }
+
+interface UserRequestBody {
+    name: string,
+    email: string,
+    tel: string,
+    role: string,
+    password: string,
+    createAt: string
+}
