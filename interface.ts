@@ -27,16 +27,6 @@ interface CompaniesResponseBody {
     data: CompanyResponseBody[]
 }
 
-export interface CompanyRequestBody {
-    name: string,
-    address: string,
-    business: string,
-    province: string,
-    postalcode: string,
-    tel: string,
-    picture: string
-}
-
 interface BookingRequestBody {
     bookingDate: string, 
     createdAt: string
