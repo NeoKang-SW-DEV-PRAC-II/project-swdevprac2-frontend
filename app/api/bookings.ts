@@ -63,7 +63,7 @@ export const useBookings = () => {
         await new Promise((resolve)=>setTimeout(resolve, 1000))
 
         const response = await fetch(`https://project-swdevprac2-backend.vercel.app/api/v1/bookings/${bid}`, {
-        method: 'DELETE',
+            method: 'DELETE',
         })
         if(!response.ok) {
             throw new Error("Failed to delete booking by id")

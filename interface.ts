@@ -21,33 +21,6 @@ interface CompanyRequestBody {
     picture: string
 }
 
-interface CreateCompanyResponse {
-    success: true,
-    data: CompanyResponseBody
-}
-
-interface GetCompanyByIdResponse {
-    success: boolean;
-    data: CompanyResponseBody;
-}
-
-interface GetCompaniesResponse {
-    success: boolean;
-    count: number;
-    pagination: {};
-    data: CompanyResponseBody[];
-}
-
-interface UpdateCompanyByIdResponse {
-    success: boolean;
-    data: CompanyResponseBody;
-}
-
-interface DeleteCompanyByIdResponse {
-    success: boolean;
-    data: CompanyResponseBody;
-}
-
 interface CompaniesResponseBody {
     success: boolean,
     count: number,
@@ -55,19 +28,24 @@ interface CompaniesResponseBody {
     data: CompanyResponseBody[]
 }
 
-interface CompanyRequestBody {
-    name: string,
-    address: string,
-    business: string,
-    province: string,
-    postalcode: string,
-    tel: string,
-    picture: string
-}
-
 interface BookingRequestBody {
     bookingDate: string, 
-    createAt: string
+    createdAt: string
+}
+
+interface BookingResponseBody {
+    _id: string,
+    bookingDate: string, 
+    user: string, 
+    company: string, 
+    createdAt: string
+}
+
+interface BookingsResponseBody {
+    success: boolean,
+    count: number,
+    pagination: Object,
+    data: BookingResponseBody[]
 }
 
 interface UserRegisterBody {

@@ -1,5 +1,5 @@
 "use client";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { useCompanies } from "@/app/api/companies";
 import Navbar from "@/components/Navbar";
@@ -9,11 +9,11 @@ import { Button, MenuItem, Select } from "@mui/material";
 import { Building2, MapPin, Phone } from "lucide-react"
 
 export default function CompanyInformation() {
+    const router = useRouter();
     const params = useParams<{ cid: string }>();
     const { cid } = params;
     const { getCompanyById } = useCompanies();
-    const [companyResponse, setCompanyResponse] =
-        useState<CompanyResponseBody | null>(null);
+    const [companyResponse, setCompanyResponse] = useState<CompanyResponseBody | null>(null);
 
     const updateCompany = useCallback(async (cid: string) => {
         const res = await getCompanyById(cid);
@@ -22,6 +22,7 @@ export default function CompanyInformation() {
     useEffect(() => {
         updateCompany(cid);
     }, [cid]);
+    
     const company: CompanyResponseBody | null = companyResponse;
 
     const [selectedPosition, setSelectedPosition] = useState("");
@@ -128,6 +129,7 @@ export default function CompanyInformation() {
                     <Button
                         className="w-full"
                         disabled={!selectedJob}
+                        onClick={(e) => {e.stopPropagation(); router.push(`/companies/booking/${cid}`) }}
                     >
                         Apply Now
                     </Button>
