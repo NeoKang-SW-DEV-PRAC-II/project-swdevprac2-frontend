@@ -20,35 +20,7 @@ export interface CompanyRequestBody {
     tel: string,
     picture: string
 }
-
-export interface CreateCompanyResponse {
-    success: true,
-    data: CompanyResponseBody
-}
-
-export interface GetCompanyByIdResponse {
-    success: boolean;
-    data: CompanyResponseBody;
-}
-
-export interface GetCompaniesResponse {
-    success: boolean;
-    count: number;
-    pagination: {};
-    data: CompanyResponseBody[];
-}
-
-export interface UpdateCompanyByIdResponse {
-    success: boolean;
-    data: CompanyResponseBody;
-}
-
-export interface DeleteCompanyByIdResponse {
-    success: boolean;
-    data: CompanyResponseBody;
-}
-
-export interface CompaniesResponseBody {
+interface CompaniesResponseBody {
     success: boolean,
     count: number,
     pagination: Object,
@@ -65,9 +37,24 @@ export interface CompanyRequestBody {
     picture: string
 }
 
-export interface BookingRequestBody {
+interface BookingRequestBody {
     bookingDate: string, 
-    createAt: string
+    createdAt: string
+}
+
+interface BookingResponseBody {
+    _id: string,
+    bookingDate: string, 
+    user: string, 
+    company: string, 
+    createdAt: string
+}
+
+interface BookingsResponseBody {
+    success: boolean,
+    count: number,
+    pagination: Object,
+    data: BookingResponseBody[]
 }
 
 export interface UserRegisterBody {
