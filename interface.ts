@@ -70,11 +70,16 @@ interface BookingRequestBody {
     createAt: string
 }
 
-interface UserRequestBody {
+interface UserRegisterBody {
     name: string,
     email: string,
     tel: string,
     role: string,
     password: string,
     createAt: string
+}
+
+interface UserLoginBody {
+    email: string, 
+    password: string
 }
