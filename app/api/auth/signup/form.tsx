@@ -3,7 +3,6 @@
 import { UsersAPI } from "../../user";
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
-import { UserRegisterBody } from "@/interface"
 
 // TODO: handle form validation
 export default function RegisterForm() {
