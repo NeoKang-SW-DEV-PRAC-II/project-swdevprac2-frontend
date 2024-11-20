@@ -43,7 +43,7 @@ export const useCompanies = () => {
     return data
   }
 
-  async function updateCompanyById(cid: string, body: CompanyRequestBody) {
+  async function updateCompany(cid: string, body: CompanyRequestBody) {
     await new Promise((resolve)=>setTimeout(resolve, 1000))
 
     const response = await fetch(`https://project-swdevprac2-backend.vercel.app/api/v1/companies/${cid}`, {
@@ -59,7 +59,7 @@ export const useCompanies = () => {
     return data
   }
 
-  async function deleteCompanyById(cid: string) {
+  async function deleteCompany(cid: string) {
     await new Promise((resolve)=>setTimeout(resolve, 1000))
 
     const response = await fetch(`https://project-swdevprac2-backend.vercel.app/api/v1/companies/${cid}`, {
@@ -77,7 +77,7 @@ export const useCompanies = () => {
     createCompany,
     getCompanies,
     getCompanyById,
-    updateCompanyById,
-    deleteCompanyById,
+    updateCompany,
+    deleteCompany,
   }
 }

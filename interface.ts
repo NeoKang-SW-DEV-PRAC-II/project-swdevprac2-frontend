@@ -54,3 +54,18 @@ interface CompaniesResponseBody {
     pagination: Object,
     data: CompanyResponseBody[]
 }
+
+interface CompanyRequestBody {
+    name: string,
+    address: string,
+    business: string,
+    province: string,
+    postalcode: string,
+    tel: string,
+    picture: string
+}
+
+interface BookingRequestBody {
+    bookingDate: string, 
+    createAt: string
+}
