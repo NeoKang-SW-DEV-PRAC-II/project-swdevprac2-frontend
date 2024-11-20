@@ -65,7 +65,7 @@ export default function CompanyInformation() {
         <div className="container mx-auto px-4 py-8">
             <div className="w-full max-w-4xl mx-auto overflow-hidden">
                 <div className="grid grid-cols-1 sm:grid-cols-2">
-                    <div className="relative aspect-[4/3] lg:aspect-auto lg:h-full">
+                    <div className="relative aspect-[4/3] lg:aspect-auto lg:h-full lg:h-72">
                         <Image
                             src={company?.picture}
                             alt="Company banner"
@@ -73,7 +73,6 @@ export default function CompanyInformation() {
                             objectFit="cover"
                             className="bg-white rounded-2xl"
                         />
-                        <div className="absolute inset-0 bg-black/25"></div>
                     </div>
                     <div className="p-6 lg:p-8">
                         <div className="p-0 mb-6">
