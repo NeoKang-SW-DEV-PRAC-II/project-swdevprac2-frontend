@@ -20,6 +20,10 @@ export const useCompanies = () => {
 
     const response = await fetch(`https://project-swdevprac2-backend.vercel.app/api/v1/companies`, {
       method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${process.env.NEXT_PUBLIC_BEARER_TOKEN}`
+    },
     })
     if(!response.ok) {
         throw new Error("Failed to get companies")
@@ -34,6 +38,10 @@ export const useCompanies = () => {
 
     const response = await fetch(`https://project-swdevprac2-backend.vercel.app/api/v1/companies/${cid}`, {
       method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${process.env.NEXT_PUBLIC_BEARER_TOKEN}`
+    },
     })
     if(!response.ok) {
         throw new Error("Failed to get company by id")
@@ -48,7 +56,10 @@ export const useCompanies = () => {
 
     const response = await fetch(`https://project-swdevprac2-backend.vercel.app/api/v1/companies/${cid}`, {
       method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${process.env.NEXT_PUBLIC_BEARER_TOKEN}`
+    },
       body: JSON.stringify(body)
     })
     if(!response.ok) {
@@ -64,6 +75,10 @@ export const useCompanies = () => {
 
     const response = await fetch(`https://project-swdevprac2-backend.vercel.app/api/v1/companies/${cid}`, {
       method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${process.env.NEXT_PUBLIC_BEARER_TOKEN}`
+    },
     })
     if(!response.ok) {
         throw new Error("Failed to delete company by id")

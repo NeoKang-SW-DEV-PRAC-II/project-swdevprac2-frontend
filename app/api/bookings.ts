@@ -4,7 +4,12 @@ export const useBookings = () => {
 
         const response = await fetch(`https://project-swdevprac2-backend.vercel.app/api/v1/bookings`, {
             method: 'GET', 
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${process.env.NEXT_PUBLIC_BEARER_TOKEN}`
+            },
         })
+        // console.log(process.env.BEARER_TOKEN)
         if(!response.ok) {
             throw new Error("Failed to get bookings")
         }
@@ -18,7 +23,10 @@ export const useBookings = () => {
 
         const response = await fetch(`https://project-swdevprac2-backend.vercel.app/api/v1/companies/${cid}/bookings`, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${process.env.NEXT_PUBLIC_BEARER_TOKEN}`
+            },
             body: JSON.stringify(body)
         })
         if(!response.ok) {
@@ -34,6 +42,10 @@ export const useBookings = () => {
 
         const response = await fetch(`https://project-swdevprac2-backend.vercel.app/api/v1/bookings/${bid}`, {
             method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${process.env.NEXT_PUBLIC_BEARER_TOKEN}`
+            },
         })
         if(!response.ok) {
             throw new Error("Failed to get booking by id")
@@ -47,8 +59,11 @@ export const useBookings = () => {
         await new Promise((resolve)=>setTimeout(resolve, 1000))
 
         const response = await fetch(`https://project-swdevprac2-backend.vercel.app/api/v1/bookings/${bid}`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${process.env.NEXT_PUBLIC_BEARER_TOKEN}`
+            },
             body: JSON.stringify(body)
         })
         if(!response.ok) {
@@ -64,6 +79,10 @@ export const useBookings = () => {
 
         const response = await fetch(`https://project-swdevprac2-backend.vercel.app/api/v1/bookings/${bid}`, {
             method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${process.env.NEXT_PUBLIC_BEARER_TOKEN}`
+            },
         })
         if(!response.ok) {
             throw new Error("Failed to delete booking by id")

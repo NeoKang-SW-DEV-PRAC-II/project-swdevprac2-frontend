@@ -1,4 +1,4 @@
-export interface CompanyResponseBody {
+interface CompanyResponseBody {
     _id: string,
     name: string,
     business: string,
@@ -11,7 +11,7 @@ export interface CompanyResponseBody {
     id: string
 }
 
-export interface CompanyRequestBody {
+interface CompanyRequestBody {
     name: string,
     address: string,
     business: string,
@@ -32,22 +32,30 @@ interface BookingRequestBody {
     createdAt: string
 }
 
+interface CompanyBookingResponse {
+    _id: string,
+    name: string,
+    address: string,
+    tel: string,
+    id: string
+}
+
 interface BookingResponseBody {
     _id: string,
     bookingDate: string, 
     user: string, 
-    company: string, 
-    createdAt: string
+    company: CompanyBookingResponse, 
+    createdAt: string,
+    __v: number
 }
 
 interface BookingsResponseBody {
     success: boolean,
     count: number,
-    pagination: Object,
     data: BookingResponseBody[]
 }
 
-export interface UserRegisterBody {
+interface UserRegisterBody {
     name: string,
     email: string,
     tel: string,
@@ -56,7 +64,7 @@ export interface UserRegisterBody {
     createAt: string
 }
 
-export interface UserLoginBody {
+interface UserLoginBody {
     email: string, 
     password: string
 }

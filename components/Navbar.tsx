@@ -95,10 +95,10 @@ const Navbar: React.FC = () => {
                 </li>
                 <li>
                   <Link
-                    href="/"
+                    href="/mybooking"
                     className="text-gray-700 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0"
                   >
-                    Review Us
+                    My Booking
                   </Link>
                 </li>
                 <li>
@@ -136,10 +136,10 @@ const Navbar: React.FC = () => {
                     </li>
                     <li>
                       <Link
-                        href="/"
+                        href="/mybooking"
                         className="bg-none hover:bg-blue-700 hover:text-white text-gray-700 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0"
                       >
-                        Review Us
+                        My Booking
                       </Link>
                     </li>
                     <li>
