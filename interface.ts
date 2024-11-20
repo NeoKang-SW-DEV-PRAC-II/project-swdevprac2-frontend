@@ -1,4 +1,4 @@
-interface CompanyResponseBody {
+export interface CompanyResponseBody {
     _id: string,
     name: string,
     business: string,
@@ -11,7 +11,7 @@ interface CompanyResponseBody {
     id: string
 }
 
-interface CompanyRequestBody {
+export interface CompanyRequestBody {
     name: string,
     address: string,
     business: string,
@@ -21,41 +21,41 @@ interface CompanyRequestBody {
     picture: string
 }
 
-interface CreateCompanyResponse {
+export interface CreateCompanyResponse {
     success: true,
     data: CompanyResponseBody
 }
 
-interface GetCompanyByIdResponse {
+export interface GetCompanyByIdResponse {
     success: boolean;
     data: CompanyResponseBody;
 }
 
-interface GetCompaniesResponse {
+export interface GetCompaniesResponse {
     success: boolean;
     count: number;
     pagination: {};
     data: CompanyResponseBody[];
 }
 
-interface UpdateCompanyByIdResponse {
+export interface UpdateCompanyByIdResponse {
     success: boolean;
     data: CompanyResponseBody;
 }
 
-interface DeleteCompanyByIdResponse {
+export interface DeleteCompanyByIdResponse {
     success: boolean;
     data: CompanyResponseBody;
 }
 
-interface CompaniesResponseBody {
+export interface CompaniesResponseBody {
     success: boolean,
     count: number,
     pagination: Object,
     data: CompanyResponseBody[]
 }
 
-interface CompanyRequestBody {
+export interface CompanyRequestBody {
     name: string,
     address: string,
     business: string,
@@ -65,12 +65,12 @@ interface CompanyRequestBody {
     picture: string
 }
 
-interface BookingRequestBody {
+export interface BookingRequestBody {
     bookingDate: string, 
     createAt: string
 }
 
-interface UserRegisterBody {
+export interface UserRegisterBody {
     name: string,
     email: string,
     tel: string,
@@ -79,7 +79,7 @@ interface UserRegisterBody {
     createAt: string
 }
 
-interface UserLoginBody {
+export interface UserLoginBody {
     email: string, 
     password: string
 }

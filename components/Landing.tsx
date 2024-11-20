@@ -1,11 +1,16 @@
 'use client'
+import { useLoading } from '@/app/context/LoadingContext';
 import Image from 'next/image'
 import { useRouter } from 'next/navigation';
 
 export default function Landing() {
+    const { loading, setLoading } = useLoading();
     const router = useRouter();
 
     return (
+        loading ? (
+            <div></div>
+        ) : (
         <div className="max-w-screen-xl mt-24 px-8 xl:px-16 mx-auto">
             <div className="grid grid-flow-row sm:grid-flow-col grid-rows-2 md:grid-rows-1 sm:grid-cols-2 gap-16 py-6 sm:py-16">
                 <div className=" flex flex-col justify-center items-start row-start-2 sm:row-start-1">
@@ -35,5 +40,6 @@ export default function Landing() {
                 </div>
             </div>
         </div>
+        )
     );
 }

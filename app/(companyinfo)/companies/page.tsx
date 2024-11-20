@@ -5,6 +5,7 @@ import { LinearProgress } from "@mui/material";
 import SearchBar from "@/components/Searchbar";
 import { useCallback, useEffect, useState } from "react";
 import { useCompanies } from "@/app/api/companies";
+import { useLoading } from "@/app/context/LoadingContext";
 
 export default function Companies() {
     const { getCompanies } = useCompanies();
@@ -20,11 +21,17 @@ export default function Companies() {
     }, [])
     const companies: CompaniesResponseBody | null = companyResponse;
 
+    const { loading, setLoading } = useLoading();
+
     return (
+        loading ? (
+            <div></div>
+        ) : (
         <main>
             <Suspense fallback={<p>Loading...<LinearProgress/></p>}>
                 <CompanyCatalog companiesJson={companies}/>
             </Suspense>
         </main>
+        )
     )
 }

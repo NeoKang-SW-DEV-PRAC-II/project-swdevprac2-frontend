@@ -7,6 +7,7 @@ import Image from "next/image";
 import { Button, MenuItem, Select } from "@mui/material";
 
 import { Building2, MapPin, Phone } from "lucide-react"
+import { useLoading } from "@/app/context/LoadingContext";
 
 export default function CompanyInformation() {
     const params = useParams<{ cid: string }>();
@@ -15,9 +16,13 @@ export default function CompanyInformation() {
     const [companyResponse, setCompanyResponse] =
         useState<CompanyResponseBody | null>(null);
 
+    const { loading, setLoading, companyInfoLoading, setCompanyInfoLoading } = useLoading();
+
     const updateCompany = useCallback(async (cid: string) => {
+        setCompanyInfoLoading(true);
         const res = await getCompanyById(cid);
         setCompanyResponse(res.data);
+        setCompanyInfoLoading(false);
     }, []);
     useEffect(() => {
         updateCompany(cid);
@@ -61,7 +66,8 @@ export default function CompanyInformation() {
         (position) => position.id === selectedPosition
     );
 
-    return company ? (
+
+    return loading ? (<div></div>) : (company ? (
         <div className="container mx-auto px-4 py-8">
             <div className="w-full max-w-4xl mx-auto overflow-hidden">
                 <div className="grid grid-cols-1 sm:grid-cols-2">
@@ -136,5 +142,5 @@ export default function CompanyInformation() {
         </div>
     ) : (
         <div></div>
-    );
+    ));
 }
