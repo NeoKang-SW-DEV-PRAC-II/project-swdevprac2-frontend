@@ -37,6 +37,12 @@ export default function BookingList({userId}: {userId: string}) {
                 <div className="text-center text-red-500">No Interview Booking</div>
             ) : (
                 bookItems.data
+                    .filter((bookingItem: BookingResponseBody) => {
+                        if (session?.user.role === "admin") {
+                            return true;
+                        }
+                        return bookingItem.user === userId;
+                    })
                     .map((bookingItem: BookingResponseBody) => (
                         <div
                             className="bg-gray-200 w-[300px] h-full bg-white shadow-lg rounded-lg mt-[10px] ml-[10px] px-5 mx-5 py-2 my-2"
