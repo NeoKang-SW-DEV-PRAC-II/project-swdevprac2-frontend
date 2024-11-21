@@ -1,4 +1,4 @@
-Vercel: https://swdevpracfinal.vercel.app/?vercelToolbarCode=ayMhM5BconZSu84
+Vercel: https://swdevpracfinal.vercel.app
 
 GitHub (Just for vercel deployment): https://github.com/Aphrodicez/swdevpracfinal
 
