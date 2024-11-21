@@ -2,12 +2,10 @@
 import { useParams, useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { useCompanies } from "@/app/api/companies";
-import Navbar from "@/components/Navbar";
 import Image from "next/image";
 import { Button, MenuItem, Select } from "@mui/material";
 
 import { Building2, MapPin, Phone } from "lucide-react"
-import { useLoading } from "@/app/context/LoadingContext";
 
 export default function CompanyInformation() {
     const router = useRouter();
@@ -16,13 +14,9 @@ export default function CompanyInformation() {
     const { getCompanyById } = useCompanies();
     const [companyResponse, setCompanyResponse] = useState<CompanyResponseBody | null>(null);
 
-    const { loading, setLoading, companyInfoLoading, setCompanyInfoLoading } = useLoading();
-
     const updateCompany = useCallback(async (cid: string) => {
-        setCompanyInfoLoading(true);
         const res = await getCompanyById(cid);
         setCompanyResponse(res.data);
-        setCompanyInfoLoading(false);
     }, []);
     useEffect(() => {
         updateCompany(cid);
@@ -68,17 +62,18 @@ export default function CompanyInformation() {
     );
 
 
-    return loading ? (<div></div>) : (company ? (
+    return (
         <div className="container mx-auto px-4 py-8">
             <div className="w-full max-w-4xl mx-auto overflow-hidden">
                 <div className="grid grid-cols-1 sm:grid-cols-2">
-                    <div className="relative aspect-[4/3] lg:aspect-auto lg:h-full lg:h-72">
+                    <div className="relative aspect-[4/3] lg:aspect-auto lg:h-72">
                         <Image
-                            src={company?.picture}
+                            src={company?.picture ?? ""}
                             alt="Company banner"
                             layout="fill"
                             objectFit="cover"
                             className="bg-white rounded-2xl"
+                            loader={({src}) => src}
                         />
                     </div>
                     <div className="p-6 lg:p-8">
@@ -89,18 +84,18 @@ export default function CompanyInformation() {
                             <div className="text-base lg:text-lg">
                                 <div className="flex items-center text-sm">
                                     <Building2 className="w-4 h-4 mr-2" />
-                                    <span>{company.business}</span>
+                                    <span>{company?.business}</span>
                                 </div>
                                 <div className="flex items-start text-sm">
                                     <MapPin className="w-4 h-4 mr-2 mt-1" />
                                     <address className="not-italic">
-                                        {company.address}<br />
-                                        {company.province}, {company.postalcode}
+                                        {company?.address}<br />
+                                        {company?.province}, {company?.postalcode}
                                     </address>
                                 </div>
                                 <div className="flex items-center text-sm">
                                     <Phone className="w-4 h-4 mr-2" />
-                                    <a href={`tel:${company.tel}`} className="hover:underline">{company.tel}</a>
+                                    <a href={`tel:${company?.tel}`} className="hover:underline">{company?.tel}</a>
                                 </div>
                             </div>
 
@@ -135,14 +130,12 @@ export default function CompanyInformation() {
                     <Button
                         className="w-full"
                         disabled={!selectedJob}
-                        onClick={(e) => {e.stopPropagation(); router.push(`/companies/booking/${cid}`) }}
+                        onClick={(e) => {e.stopPropagation(); router.push(`/bookings/booking/${cid}`) }}
                     >
                         Apply Now
                     </Button>
                 </div>
             </div>
         </div>
-    ) : (
-        <div></div>
-    ));
+    );
 }

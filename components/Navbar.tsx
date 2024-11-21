@@ -1,42 +1,21 @@
 'use client'
 
-import { useCallback, useEffect, useState } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion'
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/authOptions';
-import { UsersAPI } from '@/app/api/user';
-import { useAuthAPI } from '@/app/api/auth/[...nextauth]/authapi';
+import { useSession } from "next-auth/react";
 
-import { LoadingProvider, useLoading } from '@/app/context/LoadingContext';
+export default function Navbar() {
 
-const Navbar: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const { data: session } = useSession();
+  const isLoggedIn = !!session?.user;
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
+  const [isNavbarOpen, setIsNavbarOpen] = useState(false);
+  const toggleNavbar = () => {
+    setIsNavbarOpen(!isNavbarOpen);
   }
 
-  const { getGetServerSession } = useAuthAPI();
-  const [session, setSession] = useState<any>(null);
-  const { loading, setLoading, companyInfoLoading, setCompanyInfoLoading } = useLoading();
-
-  const updateSession = useCallback(async () => {
-    setLoading(true);
-    const res = await getGetServerSession(authOptions);
-    setSession(res);
-    setLoading(false);  
-  }, []);
-  useEffect(() => {
-    updateSession();
-  }, []);
-
   return (
-    (loading || companyInfoLoading) ?
-    (<div>
-      Loading...
-    </div>) : 
-    (
     <div className="mx-auto bg-[#edeef3]">
       <nav className="border-gray-200 mb-10 shadow-[0px_4px_4px_0px_#00000025]">
         <div>
@@ -47,17 +26,17 @@ const Navbar: React.FC = () => {
                 Life Long Learning
               </span>
             </Link>
-            <div className={`${isOpen ? "md:order-2" : "md:order-0"} flex`}>
+            <div className={`${isNavbarOpen ? "md:order-2" : "md:order-0"} flex`}>
               <button
                 type="button"
-                className="md:hidden text-gray-400 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-lg inline-flex items-center justify-center"
-                onClick={toggleMenu}
+                className=" text-gray-400 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-lg inline-flex items-center justify-center"
+                onClick={toggleNavbar}
                 aria-controls="mobile-menu-3"
-                aria-expanded={isOpen}
+                aria-expanded={isNavbarOpen}
               >
                 <span className="sr-only">Open main menu</span>
                 <svg
-                  className={`w-6 h-6 ${isOpen ? 'hidden' : 'block'}`}
+                  className={`w-6 h-6 ${isNavbarOpen ? 'hidden' : 'block'}`}
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
@@ -69,7 +48,7 @@ const Navbar: React.FC = () => {
                   />
                 </svg>
                 <svg
-                  className={`w-6 h-6 ${isOpen ? 'block' : 'hidden'}`}
+                  className={`w-6 h-6 ${isNavbarOpen ? 'block' : 'hidden'}`}
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
@@ -82,53 +61,25 @@ const Navbar: React.FC = () => {
                 </svg>
               </button>
             </div>
-            <div className="hidden md:flex">
-              <ul className="pr-3 flex-col md:flex-row flex md:space-x-8 mt-4 md:mt-0 md:text-sm md:font-medium">
-                <li className='bg-none'>
-                  <Link
-                    href="/"
-                    className="md:bg-transparent text-white block pl-3 pr-4 py-2 md:text-blue-700 md:p-0 rounded"
-                    aria-current="page"
-                  >
-                    Home
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/mybooking"
-                    className="text-gray-700 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0"
-                  >
-                    My Booking
-                  </Link>
-                </li>
-                <li>
-
-                  {
-                    session ? <Link href="/api/auth/signout"><div className='bg-none hover:bg-blue-700 hover:text-white text-gray-700 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0'>Sign-Out of {session.user?.name}</div></Link>
-                      : <Link href="/api/auth/signin"><div className='bg-none hover:bg-blue-700 hover:text-white text-gray-700 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0'>Sign-In</div></Link>
-                  }
-                </li>
-              </ul>
-            </div>
           </div>
           <div>
             <AnimatePresence>
               <motion.div
                 initial={{ y: -100, opacity: 0 }}
-                animate={isOpen ? { y: 0, opacity: 1 } : { y: 0, opacity: 0 }}
+                animate={isNavbarOpen ? { y: 0, opacity: 1 } : { y: 0, opacity: 0 }}
                 exit={{ y: -100, opacity: 0 }}
                 transition={{ duration: 0.5, ease: 'easeInOut' }}
               >
                 <div
-                  className={`${isOpen ? 'block px-1' : 'hidden h-0'
-                    } md:flex justify-between items-center w-full md:w-auto md:order-2`}
+                  className={`${isNavbarOpen ? 'block px-1' : 'hidden h-0'
+                    } justify-between items-center w-full`}
                   id="mobile-menu-3"
                 >
-                  <ul className="flex-col md:flex-row flex md:space-x-8 mt-1 md:mt-0 md:text-sm md:font-medium pb-2">
+                  <ul className="flex flex-col mt-1 pb-2">
                     <li>
                       <Link
                         href="/"
-                        className="bg-none hover:bg-blue-700 hover:text-white md:bg-transparent text-gray-700 block pl-3 pr-4 py-2 md:text-blue-700 md:p-0 rounded"
+                        className="bg-none hover:bg-blue-700 hover:text-white md:bg-transparent text-gray-700 block pl-3 pr-4 py-2 rounded"
                         aria-current="page"
                       >
                         Home
@@ -136,8 +87,8 @@ const Navbar: React.FC = () => {
                     </li>
                     <li>
                       <Link
-                        href="/mybooking"
-                        className="bg-none hover:bg-blue-700 hover:text-white text-gray-700 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0"
+                        href="/bookings/manage"
+                        className="bg-none hover:bg-blue-700 hover:text-white md:bg-transparent text-gray-700 block pl-3 pr-4 py-2 rounded"
                       >
                         My Booking
                       </Link>
@@ -145,8 +96,8 @@ const Navbar: React.FC = () => {
                     <li>
 
                       {
-                        session ? <Link href="/api/auth/signout"><div className='bg-none hover:bg-blue-700 hover:text-white text-gray-700 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0'>Sign-Out of {session.user?.name}</div></Link>
-                          : <Link href="/api/auth/signin"><div className='bg-none hover:bg-blue-700 hover:text-white text-gray-700 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0'>Sign-In</div></Link>
+                        session ? <Link href="/api/auth/signout"><div className='bg-none hover:bg-blue-700 hover:text-white md:bg-transparent text-gray-700 block pl-3 pr-4 py-2 rounded'>Sign-Out of {session.user?.name}</div></Link>
+                          : <Link href="/api/auth/signin"><div className='bg-none hover:bg-blue-700 hover:text-white md:bg-transparent text-gray-700 block pl-3 pr-4 py-2 rounded'>Sign-In</div></Link>
                       }
                     </li>
                   </ul>
@@ -157,8 +108,5 @@ const Navbar: React.FC = () => {
         </div>
       </nav>
     </div>
-    )
   );
 };
-
-export default Navbar;

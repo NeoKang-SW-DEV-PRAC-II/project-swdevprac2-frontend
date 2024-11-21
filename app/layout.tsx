@@ -5,8 +5,6 @@ import Navbar from "@/components/Navbar";
 import NextAuthProvider from "@/provider/NextAuthProvider";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/authOptions";
-import { Provider } from "react-redux";
-import { LoadingProvider } from "./context/LoadingContext";
 import ReactQueryProvider from "@/context/queryProvider";
 
 const geistSans = localFont({
@@ -30,7 +28,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  
+
   const nextAuthSession = await getServerSession(authOptions);
 
   return (
@@ -39,13 +37,11 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ReactQueryProvider>
-        <NextAuthProvider session={nextAuthSession}>
-  <LoadingProvider>
-    <Navbar />
-    {children}
-  </LoadingProvider>
-</NextAuthProvider>
-</ReactQueryProvider>
+          <NextAuthProvider session={nextAuthSession}>
+            <Navbar />
+            {children}
+          </NextAuthProvider>
+        </ReactQueryProvider>
       </body>
     </html>
   );

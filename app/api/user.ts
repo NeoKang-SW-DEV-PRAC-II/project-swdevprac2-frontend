@@ -28,27 +28,25 @@ export const UsersAPI = () => {
         }
         
         const data = await response.json()
+        console.log(data.role)
         return data
     }
 
-    async function getProfile() {
-        await new Promise((resolve)=>setTimeout(resolve, 1000))
-
-        const response = await fetch('https://project-swdevprac2-backend.vercel.app/api/v1/auth/me', {
-            method: 'GET',
-        })
-
-        if(!response.ok) {
-            throw new Error("Failed to get profile")
-        }
-
-        const data = await response.json()
-        return data
-    }
+    async function getUserProfile(token: string) {
+        const res  = await fetch(`https://project-swdevprac2-backend.vercel.app/api/v1/auth/me`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+        },);
+          const data = await res.json();
+          return data;
+      }
 
     return {
         registerUser, 
         loginUser, 
-        getProfile, 
+        getUserProfile
     }
 }

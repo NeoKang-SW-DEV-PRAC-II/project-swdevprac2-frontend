@@ -1,16 +1,19 @@
 export const useCompanies = () => {
-  async function createCompany(body: CompanyRequestBody) {
+  async function createCompany(body: CompanyRequestBody, token: string) {
     await new Promise((resolve)=>setTimeout(resolve, 1000))
 
     const response = await fetch(`https://project-swdevprac2-backend.vercel.app/api/v1/companies`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+    },
       body: JSON.stringify(body)
     })
     if(!response.ok) {
         throw new Error("Failed to create a company")
     }
-    
+
     const data = await response.json()
     return data
   }
@@ -22,7 +25,6 @@ export const useCompanies = () => {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.NEXT_PUBLIC_BEARER_TOKEN}`
     },
     })
     if(!response.ok) {
@@ -40,25 +42,24 @@ export const useCompanies = () => {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.NEXT_PUBLIC_BEARER_TOKEN}`
     },
     })
     if(!response.ok) {
         throw new Error("Failed to get company by id")
     }
-    
+    console.log(response)
     const data = await response.json()
     return data
   }
 
-  async function updateCompany(cid: string, body: CompanyRequestBody) {
+  async function updateCompany(cid: string, body: CompanyRequestBody, token: string) {
     await new Promise((resolve)=>setTimeout(resolve, 1000))
 
     const response = await fetch(`https://project-swdevprac2-backend.vercel.app/api/v1/companies/${cid}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.NEXT_PUBLIC_BEARER_TOKEN}`
+        'Authorization': `Bearer ${token}`
     },
       body: JSON.stringify(body)
     })
@@ -70,14 +71,14 @@ export const useCompanies = () => {
     return data
   }
 
-  async function deleteCompany(cid: string) {
+  async function deleteCompany(cid: string, token: string) {
     await new Promise((resolve)=>setTimeout(resolve, 1000))
 
     const response = await fetch(`https://project-swdevprac2-backend.vercel.app/api/v1/companies/${cid}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.NEXT_PUBLIC_BEARER_TOKEN}`
+        'Authorization': `Bearer ${token}`
     },
     })
     if(!response.ok) {

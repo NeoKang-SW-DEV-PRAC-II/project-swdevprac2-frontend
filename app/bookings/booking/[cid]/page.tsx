@@ -1,13 +1,13 @@
 'use client';
-import { MenuItem, Select, TextField } from "@mui/material";
+import { TextField } from "@mui/material";
 import dayjs, { Dayjs } from "dayjs";
 import { useParams, useRouter } from "next/navigation";
-import router from "next/router";
 import { useCallback, useEffect, useState } from "react";
 import { useBookings } from "@/app/api/bookings";
 import DateReserve from "@/components/DateReserve";
 import { useCompanies } from "@/app/api/companies";
 import Image from "next/image";
+import { useSession } from "next-auth/react";
 
 export default function Booking() {
     const router = useRouter();
@@ -22,8 +22,11 @@ export default function Booking() {
     const [lastName, setLastName] = useState<string>("")
     const [pickupDate, setPickupDate] = useState<Dayjs|null>(null)
 
+    const { data: session } = useSession();
+    const token: string = session?.user.token ?? "";
+
     const postBooking = useCallback(async (cid: string, body: BookingRequestBody) => {
-        await createBooking(cid, body);
+        await createBooking(cid, body, token);
     }, []);
 
     const updateCompany = useCallback(async (cid: string) => {
@@ -42,7 +45,7 @@ export default function Booking() {
             }
             postBooking(cid, item);
         }
-        router.push('/mybooking')
+        router.push('/bookings/manage')
     }
 
     const company: CompanyResponseBody | null = companyResponse;
@@ -58,6 +61,7 @@ export default function Booking() {
                         width={10}
                         height={10}
                         layout="responsive"
+                        loader={({src}) => src}
                     />
                 </div>
                 <TextField variant="standard" name="Name" label="Name" value={name}
@@ -73,6 +77,6 @@ export default function Booking() {
             </div>
         </main>
     ) : (
-        <div></div>
+        null
     );
 }

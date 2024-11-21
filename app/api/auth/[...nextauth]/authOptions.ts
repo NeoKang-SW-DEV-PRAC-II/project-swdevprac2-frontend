@@ -1,3 +1,4 @@
+import { UsersAPI } from "@/app/api/user";
 import userLogIn from "@/libs/userLogin";
 import { Role } from "@/next-auth";
 import { AuthOptions } from "next-auth";
@@ -19,11 +20,10 @@ export const authOptions: AuthOptions = {
         // Add logic here to look up the user from the credentials supplied
         if (!credentials) return null;
 
+        const { getUserProfile } = UsersAPI();
+
         const user = await userLogIn(credentials.email, credentials.password);
-        //const profile = await getUserProfile(user.token);
-        const profile = {
-          
-        }
+        const profile = await getUserProfile(user.token);
         if (user && profile) {
           // Any object returned will be saved in `user` property of the JWT
           return {

@@ -8,6 +8,7 @@ import { useBookings } from "@/app/api/bookings";
 import DateReserve from "@/components/DateReserve";
 import { useCompanies } from "@/app/api/companies";
 import Image from "next/image";
+import { useSession } from "next-auth/react";
 
 export default function BookingEdit() {
     const router = useRouter();
@@ -17,8 +18,11 @@ export default function BookingEdit() {
 
     const [pickupDate, setPickupDate] = useState<Dayjs|null>(null)
 
+    const { data: session } = useSession();
+    const token: string = session?.user.token ?? "";
+
     const postBooking = useCallback(async (bid: string, body: BookingRequestBody) => {
-        await updateBooking(bid, body);
+        await updateBooking(bid, body, token);
     }, []);
     
     const remakeBooking = () => {
@@ -29,7 +33,7 @@ export default function BookingEdit() {
             }
             postBooking(bid, item);
         }
-        router.push('/mybooking')
+        router.push('/bookings/manage')
     }
     
     return (

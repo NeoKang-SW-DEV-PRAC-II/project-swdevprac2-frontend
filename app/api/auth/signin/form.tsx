@@ -1,21 +1,17 @@
 "use client";
 
-import { useMutation } from "@tanstack/react-query";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
-import { useRouter } from "next/router";
 import { useState } from "react";
 
 export default function SignInForm({ csrfToken }: { csrfToken: string }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [isLoading, setIsLoading] = useState(false);
     const searchParams = useSearchParams();
   
     const handleSubmit = async (e: React.FormEvent) => {
       e.preventDefault();
-      setIsLoading(true);
   
       const callbackUrl = searchParams?.get("callbackUrl") || "/";
       const res = await signIn("credentials", {
@@ -23,8 +19,7 @@ export default function SignInForm({ csrfToken }: { csrfToken: string }) {
         password,
         redirect: false, // Do not redirect automatically
       });
-  
-      setIsLoading(false);
+
   
       if (res?.ok) {
         // Redirect on success
