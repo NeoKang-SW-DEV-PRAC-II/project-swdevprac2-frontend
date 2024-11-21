@@ -1,3 +1,7 @@
+Vercel: https://swdevpracfinal.vercel.app/?vercelToolbarCode=ayMhM5BconZSu84
+
+GitHub (Just for vercel deployment): https://github.com/Aphrodicez/swdevpracfinal
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
