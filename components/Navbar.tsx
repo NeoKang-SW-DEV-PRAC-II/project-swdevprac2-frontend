@@ -22,8 +22,8 @@ export default function Navbar() {
           <div className="container mx-auto flex flex-wrap items-center justify-between min-w-full border-gray-200 shadow-[0px_4px_4px_0px_#00000025] px-2">
             <Link href="https://github.com/Aphrodicez/DessertsInDorm" className="flex">
               <img src='/GitHub-Logo.png' alt="GitHub Logo" className="w-10 h-14 py-2" />
-              <span className="self-center text-lg font-semibold whitespace-nowrap pl-4">
-                Life Long Learning
+              <span className="self-center text-lg text-black font-semibold whitespace-nowrap pl-4">
+                Job Fair 2024
               </span>
             </Link>
             <div className={`${isNavbarOpen ? "md:order-2" : "md:order-0"} flex`}>

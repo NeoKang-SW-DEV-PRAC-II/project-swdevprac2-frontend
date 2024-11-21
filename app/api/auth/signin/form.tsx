@@ -31,16 +31,20 @@ export default function SignInForm({ csrfToken }: { csrfToken: string }) {
     };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="bg-gray-200 space-y-10 w-full sm:w-[400px] py-3">
+      <div className="text-2xl font-medium text-center text-gray-600 py-3">
+        <h1>Login</h1>
+      </div>
       <input
         type="hidden"
         name="csrfToken"
         defaultValue={csrfToken}
       />
-      <div>
-        <label>
+      <div className="grid w-full items-center gap-1.5 px-3 text-gray-600">
+        <label htmlFor="email">
           Email
           <input
+            className="w-full"
             type="email"
             name="email"
             value={email}
@@ -48,10 +52,11 @@ export default function SignInForm({ csrfToken }: { csrfToken: string }) {
           />
         </label>
       </div>
-      <div>
-        <label>
+      <div className="grid w-full items-center gap-1.5 px-3 text-gray-600">
+        <label htmlFor="password">
           Password
           <input
+            className="w-full"
             type="password"
             name="password"
             value={password}
@@ -59,8 +64,8 @@ export default function SignInForm({ csrfToken }: { csrfToken: string }) {
           />
         </label>
       </div>
-      <button type="submit">Sign in</button>
-      <Link href="/api/auth/signup">Sign up</Link>
+      <button type="submit" className="px-3 py-2 bg-lime-600 hover:bg-lime-700 w-1/4 mx-3 my-3">Sign in</button>
+      <Link href="/api/auth/signup" className="px-4 py-3 bg-blue-600 hover:bg-blue-700 w-1/4 mx-3 my-3">Sign up</Link>
     </form>
   );
 }
