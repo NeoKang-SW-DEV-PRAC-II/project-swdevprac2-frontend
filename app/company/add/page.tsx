@@ -17,7 +17,7 @@ export default function AddCompany() {
         return null;
     }
 
-    if (session.user.data.role !== 'admin') {
+    if (session.user.role !== 'admin') {
         return null
     }
 

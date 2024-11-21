@@ -21,6 +21,9 @@ export default function Companies() {
     }, [])
     const companies: CompaniesResponseBody | null = companyResponse;
 
+    console.log("HAHA");
+    console.log(companies)
+
     return (
         false ? (
             <div></div>

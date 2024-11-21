@@ -1,8 +1,12 @@
 'use client'
+import { useSession } from 'next-auth/react';
 import Image from 'next/image'
 import { useRouter } from 'next/navigation';
 
 export default function Landing() {
+    const { data: session } = useSession();
+    console.log(session);
+
     const router = useRouter();
 
     return (

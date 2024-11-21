@@ -1,17 +1,19 @@
-export default async function userLogIn(userEmail: string, userPassword: string) {
-    const response = await fetch("https://project-swdevprac2-backend.vercel.app/api/v1/auth/login", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            email: userEmail,
-            password: userPassword
-        }),
-    })
+import axiosInstance from "./axios";
 
-    if(!response.ok) {
-        throw new Error("Failed to log in user");
+export default async function userLogIn(email: string, password: string) {
+  const path = "/auth/login";
+  const res = await axiosInstance.post(
+    path,
+    {
+      email: email,
+      password: password,
+    },
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
     }
-    return await response.json();
+  );
+
+  return res.data;
 }

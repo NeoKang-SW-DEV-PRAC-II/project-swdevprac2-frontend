@@ -23,7 +23,7 @@ export default function Booking() {
     const [pickupDate, setPickupDate] = useState<Dayjs|null>(null)
 
     const { data: session } = useSession();
-    const token: string = session?.user.token ?? "";
+    const token: string = session?.user.token as string;
 
     const postBooking = useCallback(async (cid: string, body: BookingRequestBody) => {
         await createBooking(cid, body, token);

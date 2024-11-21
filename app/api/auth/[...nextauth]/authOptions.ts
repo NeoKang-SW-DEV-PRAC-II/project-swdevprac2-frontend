@@ -1,4 +1,4 @@
-import { UsersAPI } from "@/app/api/user";
+import getUserProfile from "@/libs/getUserProfile";
 import userLogIn from "@/libs/userLogin";
 import { Role } from "@/next-auth";
 import { AuthOptions } from "next-auth";
@@ -19,8 +19,6 @@ export const authOptions: AuthOptions = {
       async authorize(credentials) {
         // Add logic here to look up the user from the credentials supplied
         if (!credentials) return null;
-
-        const { getUserProfile } = UsersAPI();
 
         const user = await userLogIn(credentials.email, credentials.password);
         const profile = await getUserProfile(user.token);

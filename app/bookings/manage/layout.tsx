@@ -20,15 +20,11 @@ export default function DashboardLayout({
     if (!session) {
         return null;
         }
-
-    //console.log(session.user.data.role);
-
-
-
+        
   return (
     <div>
-      {session.user.data.role === 'admin' && admin}
-      {session.user.data.role === 'user' && user}
+      {session.user.role === 'admin' && admin}
+      {session.user.role === 'user' && user}
       {children}
     </div>
   );
