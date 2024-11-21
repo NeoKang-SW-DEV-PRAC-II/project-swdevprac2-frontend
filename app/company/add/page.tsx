@@ -50,22 +50,24 @@ export default function AddCompany() {
     }
 
     return true ? (
-        <div>
-        <div className="bg-white">
-        <TextField label="Company Name" value={name} onChange={(e) => setName(e.target.value)} />
-        <TextField label="Business" value={business} onChange={(e) => setBusiness(e.target.value)} />
-        <TextField label="Tel" value={tel} onChange={(e) => setTel(e.target.value)} />
-        <TextField label="Address" value={address} onChange={(e) => setAddress(e.target.value)} />
-        <TextField label="Province" value={province} onChange={(e) => setProvince(e.target.value)} />
-        <TextField label="Postal Code" value={postalcode} onChange={(e) => setPostalcode(e.target.value)} />
-        <TextField label="Picture" value={picture} onChange={(e) => setPicture(e.target.value)} />
-        </div>
-
-        <div>
-        <button name="Book Interview"
-                className="block rounded-md bg-lime-600 hover:bg-lime-700 w-2/4 px-3 py-2 shadow-lg"
-                onClick={remakeCompany}>
-                    Save
-                </button></div></div>
+        <main className="py-10 h-[200px] flex flex-col items-center space-y-4">
+            <div className="bg-neutral-100 px-10 py-5 flex flex-col space-y-5 border-solid border-2">
+                <div className="mx-4 my-4 flex flex-col gap-2">
+                    <TextField label="Company Name" value={name} onChange={(e) => setName(e.target.value)} />
+                    <TextField label="Business" value={business} onChange={(e) => setBusiness(e.target.value)} />
+                    <TextField label="Tel" value={tel} onChange={(e) => setTel(e.target.value)} />
+                    <TextField label="Address" value={address} onChange={(e) => setAddress(e.target.value)} />
+                    <TextField label="Province" value={province} onChange={(e) => setProvince(e.target.value)} />
+                    <TextField label="Postal Code" value={postalcode} onChange={(e) => setPostalcode(e.target.value)} />
+                    <TextField label="Picture" value={picture} onChange={(e) => setPicture(e.target.value)} />
+                </div>
+                <div>
+                <button name="Book Interview"
+                        className="block rounded-md bg-lime-600 hover:bg-lime-700 w-2/4 px-3 py-2 shadow-lg"
+                        onClick={remakeCompany}>
+                            Save
+                </button></div>
+            </div>
+        </main>
     ) : (<div>Loading...</div>)
 }
