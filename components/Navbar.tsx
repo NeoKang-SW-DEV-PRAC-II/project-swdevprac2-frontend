@@ -94,6 +94,14 @@ export default function Navbar() {
                       </Link>
                     </li>
                     <li>
+                      <Link
+                        href="/companies"
+                        className="bg-none hover:bg-blue-700 hover:text-white md:bg-transparent text-gray-700 block pl-3 pr-4 py-2 rounded"
+                      >
+                        Companies List
+                      </Link>
+                    </li>
+                    <li>
 
                       {
                         session ? <Link href="/api/auth/signout"><div className='bg-none hover:bg-blue-700 hover:text-white md:bg-transparent text-gray-700 block pl-3 pr-4 py-2 rounded'>Sign-Out of {session.user?.name}</div></Link>

@@ -42,7 +42,7 @@ export default function BookingList({userId}: {userId: string}) {
                     )
                     .map((bookingItem: BookingResponseBody) => (
                         <div
-                            className="bg-slate-200 rounded px-5 mx-5 py-2 my-2"
+                            className="bg-gray-200 w-[300px] h-full bg-white shadow-lg rounded-lg mt-[10px] ml-[10px] px-5 mx-5 py-2 my-2"
                             key={bookingItem._id}
                         >
                             <div className="text-md text-gray-950">{bookingItem.user}</div>

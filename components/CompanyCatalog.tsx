@@ -15,7 +15,7 @@ export default function CompanyCatalog({companiesJson, isAdmin}: {companiesJson:
             {isAdmin && ( 
             <div>
                 <button name="Book Interview"
-                    className="block rounded-md bg-lime-600 hover:bg-lime-700 w-2/4 px-3 py-2 shadow-lg"
+                    className="block rounded-md bg-lime-600 hover:bg-lime-700 mx-20 w-1/7 px-3 py-2 shadow-lg"
                     onClick={addCompany}>
                         Add Company
                     </button>

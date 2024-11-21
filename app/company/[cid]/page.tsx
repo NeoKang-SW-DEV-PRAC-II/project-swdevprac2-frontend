@@ -61,8 +61,7 @@ export default function CompanyInformation() {
         (position) => position.id === selectedPosition
     );
 
-
-    return (
+    return company ? (
         <div className="container mx-auto px-4 py-8">
             <div className="w-full max-w-4xl mx-auto overflow-hidden">
                 <div className="grid grid-cols-1 sm:grid-cols-2">
@@ -103,7 +102,7 @@ export default function CompanyInformation() {
                     </div>
                 </div>
                 <div className="p-0">
-                    <div className="mt-6">
+                    <div className="mt-6 w-[300px]">
                         <h2 className="text-2xl font-semibold mb-4">Available Positions</h2>
                         <Select
                             value={selectedPosition}
@@ -111,7 +110,7 @@ export default function CompanyInformation() {
                             className="min-w-full bg-white"
                         >
                             {positions.map((position) => (
-                                <MenuItem key={position.id} value={position.id}>
+                                <MenuItem key={position.id} value={position.id} className="text-black">
                                     {position.title}
                                 </MenuItem>
                             ))}
@@ -126,7 +125,7 @@ export default function CompanyInformation() {
                         </div>
                     )}
                 </div>
-                <div className="p-0 mt-6 bg-white tex">
+                <div className="p-0 mt-6 bg-cyan-100 tex w-[150px]">
                     <Button
                         className="w-full"
                         disabled={!selectedJob}
@@ -137,5 +136,7 @@ export default function CompanyInformation() {
                 </div>
             </div>
         </div>
-    );
+    ) : (
+        <div></div>
+    )
 }

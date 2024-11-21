@@ -51,16 +51,16 @@ export default function Booking() {
     const company: CompanyResponseBody | null = companyResponse;
     
     return company ? (
-        <main className="py-10 w-[100%] flex flex-col items-center space-y-4">
+        <main className="py-10 h-[200px] flex flex-col items-center space-y-4">
             <div className="bg-neutral-100 px-10 py-5 flex flex-col space-y-5 border-solid border-2">
                 <div className="text-2xl font-medium text-center text-cyan-600">Booking for {company?.name}</div>
                 <div className="mx-4 my-4">
                     <Image
                         src={company?.picture}
                         alt="Company Logo"
-                        width={10}
-                        height={10}
-                        layout="responsive"
+                        width={350}
+                        height={350}
+                        layout="cover"
                         loader={({src}) => src}
                     />
                 </div>

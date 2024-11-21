@@ -70,8 +70,8 @@ export default function EditCompany() {
     }
 
     return company ? (
-        <div>
-        <div className="bg-white">
+        <div className="py-10 h-[200px] flex flex-col items-center space-y-4">
+            <div className="bg-neutral-100 px-10 py-5 flex flex-col space-y-5 border-solid border-2">
         <TextField label="Company Name" value={name} onChange={(e) => setName(e.target.value)} />
         <TextField label="Business" value={business} onChange={(e) => setBusiness(e.target.value)} />
         <TextField label="Tel" value={tel} onChange={(e) => setTel(e.target.value)} />
@@ -83,7 +83,7 @@ export default function EditCompany() {
 
         <div>
         <button name="Book Interview"
-                className="block rounded-md bg-lime-600 hover:bg-lime-700 w-2/4 px-3 py-2 shadow-lg"
+                className="block rounded-md bg-lime-600 hover:bg-lime-700 w-5/5 px-3 py-2 shadow-lg"
                 onClick={remakeCompany}>
                     Save
                 </button></div></div>

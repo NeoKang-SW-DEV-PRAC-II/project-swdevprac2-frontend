@@ -26,7 +26,7 @@ export default function Companies() {
         ) : (
         <main>
             <Suspense fallback={<p>Loading...<LinearProgress/></p>}>
-                <CompanyCatalog companiesJson={companies} isAdmin = {false} token = ""/>
+                <CompanyCatalog companiesJson={companies} isAdmin = {false}/>
             </Suspense>
         </main>
         )
